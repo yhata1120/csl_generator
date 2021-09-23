@@ -13,6 +13,7 @@ import numpy as np
 from numpy import dot, cross
 from numpy.linalg import det, norm, inv
 from fractions import Fraction
+import sympy
 
 def getFZ(M,axis):
     x = np.arange(-50, 50 + 1, 1)
@@ -178,10 +179,15 @@ def getsigmas(uvw, limit):
     sigmas = []
     thetas = []
     for i in range(limit):
+
         tt = get_theta_m_n_list(uvw, i)
         if len(tt) > 0 and i > 1:
             theta, m, n = tt[0]
-            sigmas.append(i)
+            if (uvw != [1,1,1,]):
+                sigmas.append(i)
+                thetas.append(degrees(theta))                
+            elif ((i%3 != 0) & (uvw ==[1,1,1,])) or (sympy.isprime(i)):
+                sigmas.append(i)
             thetas.append(degrees(theta))
     return sigmas, thetas
 
