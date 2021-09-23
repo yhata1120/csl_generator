@@ -188,7 +188,7 @@ def getsigmas(uvw, limit):
                 thetas.append(degrees(theta))                
             elif ((i%3 != 0) & (uvw ==[1,1,1,])) or (sympy.isprime(i)):
                 sigmas.append(i)
-            thetas.append(degrees(theta))
+                thetas.append(degrees(theta))
     return sigmas, thetas
 
 def rot(a, Theta):
